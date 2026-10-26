@@ -26,7 +26,7 @@ jobs:
 
       - name: Extract Android project
         run: |
-          unzip -q jui-social-madia.zip -d source
+          unzip -q jui-social-media-apk-package.zip -d source
           find source -name gradlew -type f -exec chmod +x {} \;
 
       - name: Build APK
