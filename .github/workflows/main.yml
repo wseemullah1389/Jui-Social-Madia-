@@ -28,7 +28,18 @@ jobs:
         run: |
           unzip -q jui-social-media-apk-package.zip -d source
           find source -name gradlew -type f -exec chmod +x {} \;
-
+      - name: Create debug keystore
+        run: |
+          mkdir -p source/jui_package
+          keytool -genkeypair -v \
+            -keystore source/jui_package/debug.keystore \
+            -storepass android \
+            -keypass android \
+            -alias androiddebugkey \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
       - name: Build APK
         run: |
           cd source
